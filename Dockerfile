@@ -1,14 +1,23 @@
 FROM --platform=$BUILDPLATFORM gcc:latest
 
+# Install clang++-17/llvm, cmake & libboost
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends apt-utils && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends cmake clang-14 clang++-14 && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-dev libboost-system-dev libboost-date-time-dev
+    apt-get install -y wget gnupg lsb-release software-properties-common cmake && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y libboost-dev libboost-system-dev libboost-date-time-dev && \
+    rm -rf /var/lib/apt/lists/*
 
+# Add llvm script for installing clang++ 17
+RUN wget https://apt.llvm.org/llvm.sh && \
+    chmod +x llvm.sh && \
+    ./llvm.sh 17 && \
+    rm llvm.sh
 
-RUN ln -sf /usr/bin/clang-14 /usr/bin/clang && \
-    ln -sf /usr/bin/clang++-14 /usr/bin/clang++
+# Set clang 17 as default
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-17 100 && \
+    update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-17 100
 
+# Verify installation
+RUN clang++ --version
 
 WORKDIR /app
 

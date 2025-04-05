@@ -26,7 +26,7 @@ cCache has been added and is defaultly assumed to be only required in local env.
 # Dockerfile
 
 Builds an image from a minimum gcc:latest on the platform specified $BUILDPLATFORM param.
-Uses clang++ 14 by default, this requires links to properly set up on the path.
+Uses clang++ 17 by default.
 Exposes 8080 assuming an API needs exposure.
 Attempts to run ./build/app-api
 
@@ -53,7 +53,7 @@ Will execute the specified loaded image on docker, mapping and exposing ports 80
 
 &lt;target_machine_ip&gt; IP/hostname of the target machine to deploy the image on.
 
-Remote deployment script. Grabs the image within ./cicd/image with the specified &lt;image_tag&gt;. Creates an images directory within the remote machine, uses scp to transfer the image.tar, then attempts to load it into docker and execute the docker container by the specified &lt;image_tag&gt; on that remote machine.
+Remote deployment script. Grabs the image within ./cicd/images with the specified &lt;image_tag&gt;. Creates an images directory within the remote machine, uses scp to transfer the image.tar, then attempts to load it into docker and execute the docker container by the specified &lt;image_tag&gt; on that remote machine.
 
 
 
