@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "configurePresets": [
+      {
+        "name": "local",
+        "description": "Local development with clang for greater debugging info.",
+        "generator": "Unix Makefiles",
+        "binaryDir": "build",
+        "cacheVariables": {
+          "ENV": "local",
+          "CMAKE_C_COMPILER": "clang",
+          "CMAKE_CXX_COMPILER": "clang++"
+        },
+        "environment": {
+          "CC": "clang",
+          "CXX": "clang++"
+        }
+      },
+
+      {
+        "name": "stage",
+        "description": "Stage development with clang for greater debugging info.",
+        "generator": "Unix Makefiles",
+        "binaryDir": "build",
+        "cacheVariables": {
+          "ENV": "stage",
+          "CMAKE_C_COMPILER": "clang",
+          "CMAKE_CXX_COMPILER": "clang++"
+        },
+        "environment": {
+          "CC": "clang",
+          "CXX": "clang++"
+        }
+      }
+    ]
+  }
+  

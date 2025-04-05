@@ -1,0 +1,8 @@
+build/
+CmakeCache.txt
+CMakeFiles/
+*.o
+*.a
+*.so
+commit.msg
+cicd/images
